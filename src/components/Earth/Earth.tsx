@@ -3,7 +3,8 @@ import { EarthSphere } from './EarthSphere';
 import { Atmosphere } from './Atmosphere';
 import { CloudLayer } from './CloudLayer';
 import { EARTH_TEXTURES } from '../../constants/textures';
-import { LoadingScreen } from '../UI/LoadingScreen';
+import { CITIES } from '../../constants/cities';
+import { CityMarker } from './CityMarker';
 
 export function Earth() {
   const [colorMap, normalMap, specularMap, cloudsMap] = useTexture([
@@ -22,6 +23,9 @@ export function Earth() {
       />
       <Atmosphere />
       <CloudLayer cloudsMap={cloudsMap} />
+      {CITIES.map((city) => (
+        <CityMarker key={city.name} {...city} />
+      ))}
     </group>
   );
 }
